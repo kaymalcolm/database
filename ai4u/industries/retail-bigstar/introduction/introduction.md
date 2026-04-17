@@ -10,9 +10,9 @@ Most AI agents have amnesia. Every conversation starts fresh. They don't remembe
 
 This workshop shows how to build AI agents with **agentic memory**: agents that remember, learn, and improve over time. Using Oracle Database 26ai and Select AI Agent, you'll create agents that store facts, recall context, and make consistent decisions across sessions.
 
-## Meet Big Star Collectibles
+### Meet Big Star Collectibles
 
-Throughout this workshop, you will build AI agents for **Big Star Collectibles**, a growing collectibles retailer known for authenticated sports memorabilia, vintage comics, limited-edition sneakers, and VIP resale collections.
+Throughout this workshop, you will build AI agents for **Big Star Collectibles**, a growing collectibles retailer known for authenticated sports memorabilia, vintage comics & t-shirts, limited-edition sneakers, and VIP resale collections.
 
 Big Star Collectibles has been growing fast. Maybe too fast. Their warehouse intake specialists are buried under VIP return backlogs, authentication queues, and loyalty escalations.
 
@@ -20,19 +20,19 @@ Big Star Collectibles has been growing fast. Maybe too fast. Their warehouse int
 
 **"We keep forgetting our best clients."**
 
-Last month, Marcus Reed promised platinum collector Alex Martinez a 20% loyalty discount on every authenticated drop, yet the next specialist quoted full price. Alex had emailed Marcus, Priya, and Jennifer in Chapter 1.1 of the story, but without memory the team forgot the promise. How many other VIPs are slipping through?
+Last month, Marcus Reed promised platinum collector Alex Martinez a 20% loyalty discount on every authenticated drop, yet the next specialist quoted full price. Alex had emailed Marcus, Priya, and Jennifer, but without memory the team forgot the promise. How many other VIPs are slipping through?
 
 **"Every inventory specialist handles the same situation differently."**
 
-Two nearly identical submissions hit the queue in the Chapter 1.2 warehouse scene: a signed baseball card and a limited-edition vinyl record. One was auto-listed, the other sat in limbo because the on-call specialist couldn't see prior grading results. Without shared precedent, Big Star delivers inconsistent experiences.
+Two nearly identical submissions hit the queue: a signed baseball card and a limited-edition vinyl record. One was auto-listed, the other sat in limbo because the on-call specialist couldn't see prior grading results. Without shared precedent, Big Star delivers inconsistent experiences.
 
 **"We have no idea what our AI assistants are actually doing."**
 
-The company deployed AI chatbots to help the warehouse team, but Priya Desai still can't answer auditors when they ask “who approved Alex's refund and why?” The bots don't log reasoning, cite pricing guides, or show the provenance packets Jennifer Morales assembled in Chapter 3.2.
+The company deployed AI chatbots to help the warehouse team, but Priya Desai still can't answer auditors when they ask “who approved Alex's refund and why?” The bots don't log reasoning, cite pricing guides, or show the provenance packets Jennifer Morales assembled.
 
 **"Small items take as long to process as big ones."**
 
-A $350 common drop shouldn't take the same path as a $7,800 rookie card. Without the grading-tier routing Marcus describes in Chapter 2.1, everything flows through manual appraisal and the loyalty queue explodes.
+A $350 common drop shouldn't take the same path as a $7,800 rookie card. Without the grading-tier routing Marcus describes, everything flows through manual appraisal and the loyalty queue explodes.
 
 **"We can't enforce separation of duties."**
 
@@ -60,11 +60,6 @@ By the end, you'll have a complete item processing system where:
 - **Routine work is automated**: Low-risk items auto-approve; complex ones get human review
 - **Duties are separated**: Inventory specialists like Marcus can submit but not approve; appraisers like Priya can approve but not submit
 
-## Story Sync
-- Chapters 1.1–1.2 introduce Marcus Reed, Alex Martinez, and the warehouse backlog resolved in Labs 1–4.
-- Chapters 2.1–2.4 map to Labs 5–8, covering loyalty memory, provenance packets, and grading tiers.
-- Chapters 3.2–4.2 highlight Priya Desai and Jennifer Morales as governance leads reviewed in Labs 9–10.
-
 ## Workshop Structure
 
 ✅ **Start with the basics (Labs 1-4)**
@@ -89,11 +84,7 @@ Now you'll solve the "forgetting" problem that frustrates Big Star Collectibles'
 
 * **Lab 7 – Build Your Memory Core** Create memory tables using Oracle's native JSON. Build `remember_fact` and `recall_facts` functions. Register them as agent tools. Now when you tell the agent about Alex Martinez, clear the session, and ask again, *the agent remembers*.
 
-* **Lab 8 – Implement All Four Memory Types** Build the complete memory architecture:
-  - **Short-term context**: What item submission are we working on right now?
-  - **Long-term facts**: Client preferences, loyalty discounts, relationship history
-  - **Decisions and outcomes**: What did we decide before? What happened?
-  - **Reference knowledge**: Corporate collectibles policies (human-maintained)
+* **Lab 8 – Implement All Four Memory Types** Build the complete memory architecture: **Short-term context**: What item submission are we working on right now? **Long-term facts**: Client preferences, loyalty discounts, relationship history **Decisions and outcomes**: What did we decide before? What happened? **Reference knowledge**: Corporate collectibles policies (human-maintained)
 
 * **Lab 9 – The Learning Loop** Create a fully memory-enabled inventory specialist assistant. It checks memory before answering, stores new information automatically, consults past decisions for guidance, and looks up policies on demand. Test it across session boundaries. It remembers everything.
 
@@ -103,26 +94,13 @@ Finally, you'll build the guardrails that make agents safe for collectibles reta
 
 * **Lab 10 – Tools, Safety, and Human Control** Build a two-agent system that enforces separation of duties:
   
-  **INVENTORY_AGENT** (for inventory specialists):
-  - Can submit item submissions
-  - Cannot approve or deny anything
-  - Literally doesn't have the approval tools
+  **INVENTORY_AGENT** (for inventory specialists): Can submit item submissions, Cannot approve or deny anything, Literally doesn't have the approval tools
   
-  **APPRAISAL_AGENT** (for appraisers):
-  - Can view pending submissions
-  - Can approve or deny
-  - Cannot submit submissions
+  **APPRAISAL_AGENT** (for appraisers): Can view pending submissions, Can approve or deny, Cannot submit submissions
   
-  **Automatic Risk Assessment:**
-  - Condition grade below 550 → BLOCKED (submission rejected)
-  - Personal items under $50K with good credit → AUTO_APPROVED
-  - Items $50K-$250K → Requires APPRAISER review
-  - Items over $250K or any authenticating → Requires SENIOR_APPRAISER
+  **Automatic Risk Assessment:** Condition grade below 550 → BLOCKED (submission rejected), Personal items under $50K with good credit → AUTO APPROVED, Items $50K-$250K → Requires APPRAISER review, Items over $250K or any authenticating → Requires SENIOR_APPRAISER
   
-  **Complete Audit Trail:**
-  - Every tool call logged with timestamp
-  - Full input and output captured
-  - Queryable for compliance review
+  **Complete Audit Trail:** - Every tool call logged with timestamp, Full input and output captured, Queryable for compliance review
 
 ## The Big Star Collectibles Item Workflow
 
@@ -192,10 +170,6 @@ For this workshop, we provide the environment. You'll need:
 
 * Basic knowledge of SQL and PL/SQL, or the ability to follow along with the prompts
 
-## Story Sync
-- Chapters 1.1–1.2 introduce Marcus Reed, Alex Martinez, and the return backlog you'll resolve in Labs 1–4.
-- Chapters 2.1–2.4 map directly to Labs 5–8, where you capture loyalty perks, provenance packets, and memory types.
-- Chapters 3.1–3.4 and 4.2 inform Labs 9–10, highlighting Priya Desai and Jennifer Morales as governance leads reviewing every high-value decision.
 
 ## Learn More
 
